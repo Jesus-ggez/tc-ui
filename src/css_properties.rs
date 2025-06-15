@@ -3,6 +3,7 @@ use std::collections::HashMap;
 
 use crate::static_component::StaticComponent;
 
+//<·
 #[pymethods]
 impl StaticComponent {
     #[new]
