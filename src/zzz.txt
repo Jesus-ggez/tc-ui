@@ -397,5 +397,4 @@ wrap-flow                      : value
 wrap-through                   : value
 writing-mode                   : value
 z-index                        : value
---*                            : value
 transition-timing-function     : value

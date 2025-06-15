@@ -1,52 +1,55 @@
+template: str = """use pyo3::prelude::*;
+
+use crate::static_component::StaticComponent;
+
+#[pymethods]
+impl StaticComponent{
+    #[new]
+    fn new() -> Self {
+        Foo {
+            properties: HashMap::new(),
+        }
+    }
+    fn set_property(mut slf: PyRefMut<'_, Self>, name: String, value: String) -> PyRefMut<'_, Self> {
+        let _ = slf.properties.insert(name, value);
+        slf
+    }
+
+    __methods__
+}"""
+
+def fn_builder(prop: str) -> str:
+    quote_2: str = '"'
+
+    data: str = """
+    // set __prop__u
+    fn set___prop__(slf: PyRefMut<'_, Self>, value: String) -> PyRefMut<'_, Self> {
+        Self::set_property(slf, .?__prop__u.?.to_string(), value)
+    }
+
+    """
+
+    return ( data
+        .replace('__prop__u', prop)
+        .replace('__prop__', prop.replace('-', '_'))
+        .replace('.?', quote_2)
+    )
+
+
 def main() -> None:
-    new_document: list[str] = []
+    with open('zzz.txt', 'r') as data:
+        raw: str = ''
 
-    max_len_line: int = 0
+        for line in data:
+            begin: str = line.split(':')[0].strip()
 
-    with open('raw_props.txt', 'r')  as raw_props:
-        for line in raw_props:
+            raw += fn_builder(begin)
 
-            if not line.strip():
-                continue
 
-            if len(line) > max_len_line:
-                max_len_line = len(line)
-
-                print(max_len_line)
-
-            new_document.append(
-                (
-                    line
-                        .strip()
-                        .removesuffix(';')
-                        + '\n'
-                )
+        with open('css_properties.rs', 'w') as d:
+            d.write(
+                template.replace('__methods__', raw)
             )
 
-    with open('zzz.txt', 'w') as doc:
-        document: list[str] = [] #or new_document
-        for line in new_document:
-            raw: list[str] = line.split(':')
-
-            if len(raw) != 2:
-                document.append(line)
-                continue
-
-            raw[1] = ':' + raw[1]
-            diff: int = max_len_line - len(line)
-            raw[0] += (' ' * diff)
-
-            document.append(''.join(raw))
-
-        doc.writelines(document)
-
-
-def clean() -> None:
-    with open('zzz.txt', 'r') as doc:
-        for line in doc:
-            if not (':' in line):
-                print(line)
-
 if __name__ == '__main__':
-    #main()
-    clean()
+    main()
