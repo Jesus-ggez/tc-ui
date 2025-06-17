@@ -1,14 +1,14 @@
 use pyo3::prelude::*;
 use std::collections::HashMap;
 
-use crate::static_component::StaticComponent;
+use crate::dom_components::StyleComponent;
 
 //<·
 #[pymethods]
-impl StaticComponent {
+impl StyleComponent {
     #[new]
     fn new() -> Self {
-        StaticComponent {
+        StyleComponent {
             properties: HashMap::new(),
         }
     }
