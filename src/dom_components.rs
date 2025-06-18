@@ -9,10 +9,10 @@ pub struct StyleComponent {
 }
 
 #[pyclass]
-pub struct HtmlElement{
+pub struct HtmlElement {
     #[pyo3(get)]
     pub properties: HashMap<String, String>,
 
     #[pyo3(get)]
-    pub semantic_tag: String,
+    pub repr_tag: String,
 }
