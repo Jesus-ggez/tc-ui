@@ -1,0 +1,47 @@
+📌 Atributos Globales (válidos en casi cualquier etiqueta)
+-----------------------------------------------
+id           - Identificador único.
+class        - Clases para CSS.
+style        - Estilos CSS en línea.
+title        - Texto emergente (tooltip).
+lang         - Idioma del contenido (ej: lang="es").
+tabindex     - Orden de enfoque con teclado.
+contenteditable - Permite editar el texto.
+hidden       - Oculta el elemento.
+draggable    - Hace el elemento arrastrable.
+
+📌 Atributos Específicos (por tipo de etiqueta)
+-----------------------------------------------
+🔹 Enlaces e imágenes:
+href         - URL (<a>, <link>).
+src          - Ruta del recurso (<img>, <script>, <iframe>).
+alt          - Texto alternativo (<img>).
+target       - Dónde abrir el enlace (_blank, _self).
+width - 
+height - Dimensiones (<img>, <video>).
+
+🔹 Formularios (<input>, <select>, etc.):
+type         - Tipo de campo (text, email, password, etc.).
+name         - Nombre del campo (para enviar datos).
+value        - Valor predeterminado.
+placeholder  - Texto de ejemplo.
+required     - Campo obligatorio.
+disabled     - Desactiva el campo.
+readonly     - Solo lectura.
+min          - Límites numéricos.
+max          - Límites numéricos.
+step         - Incremento en campos numéricos.
+checked      - Para checkboxes/radio buttons.
+
+🔹 Multimedia (<audio>, <video>):
+controls     - Muestra controles de reproducción.
+autoplay     - Reproducción automática.
+loop         - Repetir automáticamente.
+poster       - Imagen previa (<video>).
+
+📌 Metadatos (<meta>, <link>)
+-----------------------------------------------
+charset      - Codificación (ej: UTF-8).
+name         - Metadatos
+content      - Metadatos (descripción, keywords).
+rel          - Relación (stylesheet, icon).
