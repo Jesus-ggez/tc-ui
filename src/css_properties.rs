@@ -24,19 +24,6 @@ impl StyleComponent {
             properties: HashMap::new(),
         }
     }
-
-    fn set_property(
-        mut slf: PyRefMut<'_, Self>,
-        name: String,
-        value: String,
-    ) -> PyRefMut<'_, Self> {
-        let _ = slf
-            .properties
-            .insert(name, format!("{}", utils::repr(&value)));
-        slf
-    }
-
-    // def __str__(self) -> str:
     fn __str__(&self) -> PyResult<String> { //#.?
         let entries = self.__simple_base_content();
         let fmt: Vec<String> = entries
@@ -45,7 +32,7 @@ impl StyleComponent {
             .collect();
 
         Ok(format!("{{\n{}\n}}", fmt.join("\n")))
-    }
+    } // __str__
 
     fn as_class(&self, class_name: String) -> PyResult<String> { //<·str·>!
         let cls_str = self.__str__()?;
@@ -56,7 +43,6 @@ impl StyleComponent {
                 class_name, cls_str
             )
         )
-
     } // __as_class__
 
     fn as_tag(&self, class_name: String) -> PyResult<String> { // <·str·>!
@@ -86,6 +72,17 @@ impl StyleComponent {
     } // inline
 
     /// css props
+    fn set_property(
+        mut slf: PyRefMut<'_, Self>,
+        name: String,
+        value: String,
+    ) -> PyRefMut<'_, Self> {
+        let _ = slf
+            .properties
+            .insert(name, format!("{}", utils::repr(&value)));
+        slf
+    }
+
     fn align_content(slf: PyRefMut<'_, Self>, value: String) -> PyRefMut<'_, Self> {
         Self::set_property(slf, "align-content".to_string(), value)
     }

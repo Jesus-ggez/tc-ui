@@ -56,7 +56,7 @@ impl HtmlElement {
         let mut controls = self.__simple_base_content_controls().join("\n");
 
         if !controls.is_empty() {
-            controls.insert_str(0, "\n");
+            controls = "\n".to_owned() + &controls;
         }
         if !attrs.is_empty() {
             attrs = "\n".to_owned() + &attrs;
