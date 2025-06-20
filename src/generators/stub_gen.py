@@ -14,7 +14,7 @@ def struc_class(name: str) -> list[str]:
     return [
         f'class {name}:',
         t + 'def __init__(self) -> None:',
-        t + t + '...',
+        t + t + '...\n\n',
     ]
 
 
@@ -98,7 +98,12 @@ def stub_gen(doc: tuple[str]) -> dict:
             )\
             .replace('.?.', tokens[0])\
 
-        classes[current_class].append(replace_to_pytypes(func))
+        classes[current_class].append(
+            replace_to_pytypes(func)
+            .replace('self, self, ', 'self, ')
+            .replace('self, self', 'self')
+            .replace('self, )', 'self)')
+        )
 
     return classes
 
@@ -120,7 +125,12 @@ def app(doc: tuple[str]) -> None:
     data: dict = stub_gen(doc=doc)
 
     for k in data.keys():
-        with open('zample.py', 'w') as document:
-            document.write(
-                '\n'.join(data[k])
-            )
+        try:
+            with open('zample.py', 'a') as document:
+                document.write('\n'.join(data[k]))
+                document.write('\n\n')
+
+        except:
+            with open('zample.py', 'w') as document:
+                document.write('\n'.join(data[k]))
+                document.write('\n\n')

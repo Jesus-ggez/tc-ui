@@ -2,6 +2,7 @@ class StyleComponent:
     def __init__(self) -> None:
         self.properties: dict
 
+
     def set_property(self) -> 'StyleComponent': ...
 
     def as_tag(self, class_name: str) -> str: ...
@@ -807,12 +808,18 @@ class StyleComponent:
     def z_index(self, value: str) -> 'StyleComponent': ...
 
     def transition_timing_function(self, value: str) -> 'StyleComponent': ...
-class HtmlElement:
-    def __init__(self) -> None:
-        self.properties: dict
-        self.components: list
-        self.repr_tag: str
 
+
+class HtmlElement:
+    def __init__(self, tag: str | None = None) -> None:
+        self.attrs: dict
+        self.components: list
+        self.tag: str
+
+
+    def formated(self) -> str: ...
+
+    def as_tag(self) -> str: ...
 
     def set_attr(self, name: str, value: str) -> 'HtmlElement': ...
 
@@ -866,7 +873,7 @@ class HtmlElement:
 
     def checked(self, value: str) -> 'HtmlElement': ...
 
-    def controls(self, value: str) -> 'HtmlElement': ...
+    def set_controls(self, value: str) -> 'HtmlElement': ...
 
     def autoplay(self, value: str) -> 'HtmlElement': ...
 
@@ -881,3 +888,5 @@ class HtmlElement:
     def content(self, value: str) -> 'HtmlElement': ...
 
     def rel(self, value: str) -> 'HtmlElement': ...
+
+

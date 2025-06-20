@@ -4,36 +4,80 @@ use std::collections::HashMap;
 use crate::dom_components::HtmlElement;
 
 //<·
+impl HtmlElement {
+    fn __simple_base_content_attrs(&self) -> Vec<String> {
+        let mut attrs = Vec::new();
+
+        for (k, v) in &self.attrs {
+            attrs.push(format!("{}=\"{}\" ", k, v));
+        }
+        attrs
+    }
+    fn __simple_base_content_controls(&self) -> Vec<String> {
+        self.components.iter()
+            .map(|c| format!("\t{}", c.trim()))
+            .collect()
+    }
+}
 #[pymethods]
 impl HtmlElement {
     #[new]
-    fn new() -> Self {
+    #[pyo3(signature=(tag = None))]
+    fn new(tag: Option<String>) -> Self {
+        let html_tag: String = tag.unwrap_or("div".to_string());
+
         HtmlElement {
-            repr_tag: "div".to_string(),
-            properties: HashMap::new(),
+            tag: html_tag,
+            attrs: HashMap::new(),
             components: Vec::new(),
         }
     } // __init__(self)
 
-    fn __str__(&self) -> PyResult<String> {
-        let mut entries = Vec::new();
+    fn __str__(&self) -> PyResult<String> { // #.?
+        let controls: String = self.components.iter()
+            .map(|c| c.trim())
+            .collect();
 
-        for (k, v) in &self.properties {
-            entries.push(format!("{}=\"{}\"", k, v));
+        let __str__= format!(
+            "<{} {}>{}</{}>",
+            &self.tag,
+            self.__simple_base_content_attrs().join(""),
+            controls,
+            &self.tag,
+        );
+        Ok(__str__)
+    } // __str__
+
+    fn formated(&self) -> PyResult<String> { // <·str·>!
+        let attrs: String = self.__simple_base_content_attrs().iter()
+            .map(|c| format!("\t{}\n", c))
+            .collect();
+
+        let mut controls = self.__simple_base_content_controls().join("\n");
+
+        if !controls.is_empty() {
+            controls.insert_str(0, "\n");
         }
+
         let self_str = format!(
-            "<{} {}>{}</{}>\n",
-            &self.repr_tag,
-            entries.join(""),
-            &self.components.join(""),
-            &self.repr_tag,
+            "<{} \n{}>{}\n</{}>",
+            &self.tag,
+            attrs,
+            controls,
+            &self.tag,
         );
 
         Ok(self_str)
-    } // __str__
+    } // __formated__
 
+    fn as_tag(&self) -> PyResult<String> { // <·str·>!
+        let str_repr = &self.__str__()?;
+        Ok(str_repr.to_owned() + "\n")
+    } // __as_tag__
+
+    /// html attrs
     fn set_attr(mut slf: PyRefMut<'_, Self>, name: String, value: String) -> PyRefMut<'_, Self> {
-        let _ = slf.properties.insert(name, value);
+        let _ = slf.attrs.insert(name, value);
         slf
     }
     fn tc_prop(slf: PyRefMut<'_, Self>, name: String, value: String) -> PyRefMut<'_, Self> {
@@ -114,7 +158,7 @@ impl HtmlElement {
     fn checked(slf: PyRefMut<'_, Self>, value: String) -> PyRefMut<'_, Self> {
         Self::set_attr(slf, "checked".to_string(), value)
     }
-    fn controls(slf: PyRefMut<'_, Self>, value: String) -> PyRefMut<'_, Self> {
+    fn set_controls(slf: PyRefMut<'_, Self>, value: String) -> PyRefMut<'_, Self> {
         Self::set_attr(slf, "controls".to_string(), value)
     }
     fn autoplay(slf: PyRefMut<'_, Self>, value: String) -> PyRefMut<'_, Self> {

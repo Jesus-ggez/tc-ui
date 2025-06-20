@@ -71,7 +71,7 @@ impl StyleComponent {
             return Ok(format!("{}{}\"", prefix, entries.join("")));
         }
         Ok(format!("{}", entries.join("")))
-    }
+    } // inline
 
     /// css props
     fn align_content(slf: PyRefMut<'_, Self>, value: String) -> PyRefMut<'_, Self> {
