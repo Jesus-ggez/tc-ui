@@ -49,7 +49,7 @@ impl HtmlElement {
     } // __str__
 
     fn formated(&self) -> PyResult<String> { // <·str·>!
-        let attrs: String = self.__simple_base_content_attrs().iter()
+        let mut attrs: String = self.__simple_base_content_attrs().iter()
             .map(|c| format!("\t{}\n", c))
             .collect();
 
@@ -58,9 +58,12 @@ impl HtmlElement {
         if !controls.is_empty() {
             controls.insert_str(0, "\n");
         }
+        if !attrs.is_empty() {
+            attrs = "\n".to_owned() + &attrs;
+        }
 
         let self_str = format!(
-            "<{} \n{}>{}\n</{}>",
+            "<{}{}>{}\n</{}>",
             &self.tag,
             attrs,
             controls,
@@ -181,5 +184,8 @@ impl HtmlElement {
     }
     fn rel(slf: PyRefMut<'_, Self>, value: String) -> PyRefMut<'_, Self> {
         Self::set_attr(slf, "rel".to_string(), value)
+    }
+    fn append(&mut self, item: String) {
+        let _ = self.components.push(item);
     }
 }

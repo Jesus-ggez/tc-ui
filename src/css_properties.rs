@@ -41,11 +41,23 @@ impl StyleComponent {
         let entries = self.__simple_base_content();
         let fmt: Vec<String> = entries
             .iter()
-            .map(|entry| format!("'\t{}", entry))
+            .map(|entry| format!("\t{}", entry))
             .collect();
 
-        Ok(format!("{{\n{}}}", fmt.join("\n")))
+        Ok(format!("{{\n{}\n}}", fmt.join("\n")))
     }
+
+    fn as_class(&self, class_name: String) -> PyResult<String> { //<·str·>!
+        let cls_str = self.__str__()?;
+
+        Ok(
+            format!(
+                ".{} {}",
+                class_name, cls_str
+            )
+        )
+
+    } // __as_class__
 
     fn as_tag(&self, class_name: String) -> PyResult<String> { // <·str·>!
         let entries = self.__simple_base_content();
@@ -55,7 +67,7 @@ impl StyleComponent {
             .collect();
 
         let tag_str = format!(
-            "<style>\n\t{} {{\n{}}}\n</style>\n",
+            "<style>\n\t{} {{\n{}\n}}\n</style>\n",
             class_name,
             fmt.join("\n")
         );
