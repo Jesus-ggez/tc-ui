@@ -1,3 +1,10 @@
+class Text:
+    def __init__(self, value: str | None = None, semantic_tag: str | None =  None) -> None:
+        self.element: HtmlElement
+        self.value: str
+
+    def formated(self) -> str: ...
+
 class StyleComponent:
     def __init__(self) -> None:
         self.properties: dict

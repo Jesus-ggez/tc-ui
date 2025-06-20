@@ -1,4 +1,5 @@
-from tc_ui import HtmlElement, StyleComponent
+from tc_ui import HtmlElement, StyleComponent, Text
+
 
 class MyComponent(HtmlElement):
     def __init__(self) -> None:
@@ -37,3 +38,11 @@ if __name__ == '__main__':
 
     print(z.formated())
     print(zz)
+
+    a = HtmlElement()
+    a.append(
+        Text(
+            value='dore',
+        ).formated()
+    )
+    print(a)

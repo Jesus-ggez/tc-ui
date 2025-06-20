@@ -5,7 +5,7 @@ use crate::dom_components::HtmlElement;
 
 //<·
 impl HtmlElement {
-    fn __simple_base_content_attrs(&self) -> Vec<String> {
+    pub fn __simple_base_content_attrs(&self) -> Vec<String> {
         let mut attrs = Vec::new();
 
         for (k, v) in &self.attrs {
@@ -23,7 +23,7 @@ impl HtmlElement {
 impl HtmlElement {
     #[new]
     #[pyo3(signature=(tag = None))]
-    fn new(tag: Option<String>) -> Self {
+    pub fn new(tag: Option<String>) -> Self {
         let html_tag: String = tag.unwrap_or("div".to_string());
 
         HtmlElement {
@@ -37,18 +37,25 @@ impl HtmlElement {
         let controls: String = self.components.iter()
             .map(|c| c.trim())
             .collect();
+        let mut attrs: String = self.__simple_base_content_attrs().join("");
+            //.map(|c| format!("{}", c))
+            //.collect();
+
+        if !attrs.is_empty() {
+            attrs = " ".to_owned() + &attrs;
+        }
 
         let __str__= format!(
-            "<{} {}>{}</{}>",
+            "<{}{}>{}</{}>",
             &self.tag,
-            self.__simple_base_content_attrs().join(""),
+            attrs,
             controls,
             &self.tag,
         );
         Ok(__str__)
     } // __str__
 
-    fn formated(&self) -> PyResult<String> { // <·str·>!
+    pub fn formated(&self) -> PyResult<String> { // <·str·>!
         let mut attrs: String = self.__simple_base_content_attrs().iter()
             .map(|c| format!("\t{}\n", c))
             .collect();
@@ -58,6 +65,7 @@ impl HtmlElement {
         if !controls.is_empty() {
             controls = "\n".to_owned() + &controls;
         }
+
         if !attrs.is_empty() {
             attrs = "\n".to_owned() + &attrs;
         }
@@ -73,7 +81,7 @@ impl HtmlElement {
         Ok(self_str)
     } // __formated__
 
-    fn as_tag(&self) -> PyResult<String> { // <·str·>!
+    pub fn as_tag(&self) -> PyResult<String> { // <·str·>!
         let str_repr = &self.__str__()?;
         Ok(str_repr.to_owned() + "\n")
     } // __as_tag__
@@ -185,7 +193,7 @@ impl HtmlElement {
     fn rel(slf: PyRefMut<'_, Self>, value: String) -> PyRefMut<'_, Self> {
         Self::set_attr(slf, "rel".to_string(), value)
     }
-    fn append(&mut self, item: String) {
+    pub fn append(&mut self, item: String) {
         let _ = self.components.push(item);
     }
 }
