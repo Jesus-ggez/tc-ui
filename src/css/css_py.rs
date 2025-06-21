@@ -12,9 +12,11 @@ impl StyleComponent {
             properties: HashMap::new(),
         }
     }
+
     fn __init__(&mut self, properties: HashMap<String, String>) {
         self.properties = properties;
     }
+
     pub fn __str__(&self) -> PyResult<String> {
         let fmt: String = self
             .__simple_base_content()

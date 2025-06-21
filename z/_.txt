@@ -21,14 +21,14 @@
 	<p class="red-box" ></p>
 	<p class="red-box" ></p>
 	<p
-	style="background-color: cyan;padding: 10px;" 
+	style="padding: 10px;background-color: cyan;" 
 >
 </p>
 	<style>
 	.red-box {
 		padding: 10px;
-		margin: 1px;
 		background-color: #dc143c;
+		margin: 1px;
 }
 </style>
 </body></html>

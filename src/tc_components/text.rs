@@ -26,21 +26,5 @@ impl Text {
         let supr = slf.as_super();
 
         supr.__str__()
-
-        /*
-        Ok(format!(
-            "<{}{}>{}</{}>",
-            supr.tag,
-            &super_attrs,
-            slf.value,
-            supr.tag,
-        ))
-        let attrs = slf.element.__list_fmt_attrs().join("");
-
-        Ok(format!(
-            "<{} {}>{}</{}>",
-            self.element.tag, attrs, self.value, self.element.tag,
-        ))
-        */
     }
 }

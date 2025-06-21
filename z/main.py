@@ -1,5 +1,6 @@
 from fastapi.responses import HTMLResponse
 from fastapi import FastAPI
+import sys
 
 #.?
 from src.components import Index
@@ -16,7 +17,6 @@ def index() -> str:
         doc.write(html)
 
     return html
-
 
 if __name__ == '__main__':
     from uvicorn import run

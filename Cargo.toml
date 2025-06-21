@@ -16,3 +16,11 @@ include-pyi = true
 [profile.release]
 opt-level = 3
 lto = false
+
+[profile.dev]
+incremental = true
+opt-level = 0
+
+[build]
+rustc-wrapper = "sccache"
+

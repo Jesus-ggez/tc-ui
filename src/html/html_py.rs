@@ -16,6 +16,10 @@ impl HtmlElement {
         }
     }
 
+    fn __init__(&self, tag: String) {
+        self.tag = tag;
+    }
+
     pub fn __str__(&self) -> PyResult<String> {
         let mut attrs: String = self.__list_fmt_attrs().join("");
         if !attrs.is_empty() {
@@ -30,5 +34,4 @@ impl HtmlElement {
             &self.tag
         ))
     }
-
 }
