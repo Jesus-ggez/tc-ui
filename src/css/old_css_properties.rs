@@ -2,20 +2,9 @@ use pyo3::prelude::*;
 use std::collections::HashMap;
 
 use crate::dom_components::StyleComponent;
-use crate::utils;
+use crate::utils::formaters;
 
-//<·
-impl StyleComponent {
-    fn __simple_base_content(&self) -> Vec<String> {
-        let mut entries = Vec::new();
-
-        for (k, v) in &self.properties {
-            entries.push(format!("{}: {};", k, v));
-        }
-        entries
-    }
-}
-
+/*/<·
 #[pymethods]
 impl StyleComponent {
     #[new]
@@ -71,7 +60,7 @@ impl StyleComponent {
         Ok(format!("{}", entries.join("")))
     } // inline
 
-    /// css props
+    // css props
     fn set_property(
         mut slf: PyRefMut<'_, Self>,
         name: String,
@@ -79,10 +68,11 @@ impl StyleComponent {
     ) -> PyRefMut<'_, Self> {
         let _ = slf
             .properties
-            .insert(name, format!("{}", utils::repr(&value)));
+            .insert(name, format!("{}", formaters::repr(&value)));
         slf
     }
 
+    */
     fn align_content(slf: PyRefMut<'_, Self>, value: String) -> PyRefMut<'_, Self> {
         Self::set_property(slf, "align-content".to_string(), value)
     }

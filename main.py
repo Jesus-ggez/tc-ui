@@ -36,10 +36,7 @@ if __name__ == '__main__':
     z.append(zz.as_class('dot'))
     z.append(zz.as_class('env'))
 
-    print(z.formated())
-    print(zz)
-
-    a = HtmlElement()
+    a = MyComponent()
     a.append(
         Text(
             value='dore',

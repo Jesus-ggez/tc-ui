@@ -12,7 +12,7 @@ pub struct StyleComponent {
 /// #.? -> ignore
 
 #[pyclass(subclass)]
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct HtmlElement {
     #[pyo3(get)]
     pub attrs: HashMap<String, String>,

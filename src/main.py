@@ -49,6 +49,4 @@ def main() -> None:
 
 
 if __name__ == '__main__':
-    #main()
-    app(doc=document(name='css_properties.rs'))
-    app(doc=document(name='html_properties.rs'))
+    main()

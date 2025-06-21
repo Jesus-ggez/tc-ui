@@ -1,9 +1,5 @@
-class Text:
-    def __init__(self, value: str | None = None, semantic_tag: str | None =  None) -> None:
-        self.element: HtmlElement
-        self.value: str
-
-    def formated(self) -> str: ...
+class Text(HtmlElement):
+    def __init__(self, tag: str | None = ...) -> None: ...
 
 class StyleComponent:
     def __init__(self) -> None:
@@ -14,7 +10,7 @@ class StyleComponent:
 
     def as_tag(self, class_name: str) -> str: ...
 
-    def inline(self, use_attr: bool) -> str: ...
+    def as_inline(self, use_attr: bool) -> str: ...
 
     def set_property(self) -> 'StyleComponent': ...
 

@@ -1,0 +1,9 @@
+use pyo3::prelude::*;
+
+use crate::dom_components::StyleComponent;
+
+//<·
+#[pymethods]
+impl StyleComponent {
+
+}
