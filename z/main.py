@@ -12,8 +12,9 @@ app: FastAPI = FastAPI()
 def index() -> str:
     html: str = Index().as_tag()
 
-    with open('_.txt', 'w') as doc:
-        doc.write(html)
+    if 0 == 1:
+        with open('_.txt', 'w') as doc:
+            doc.write(html)
 
     return html
 

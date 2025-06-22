@@ -1,10 +1,21 @@
-from tc_ui import StyleComponent, HtmlElement
+from tc_ui import StyleComponent, HtmlElement, Commentary
 
+
+
+def block() -> Commentary:
+    return Commentary('debug!')
 
 def test_HtmlElement() -> None:
     test_str_element()
     test_as_tag_element()
     test_as_tag_with_elements()
+    test_block_commentary()
+
+
+def test_block_commentary() -> None:
+    print(block())
+    print(block().as_tag())
+    print(block().formated())
 
 
 def test_str_element() -> None:
@@ -19,13 +30,14 @@ def test_as_tag_element() -> None:
 
 def test_as_tag_with_elements() -> None:
     child: HtmlElement = HtmlElement()
-    child.append(child.as_tag())
+    child.add_html(child.as_tag())
 
     tag: HtmlElement = test_element()
-    tag.append(child.as_tag())
-    tag.append(tag.as_tag())
-    tag.append(tag.as_tag())
-    tag.append(tag.as_tag())
+    tag.add_html(child.as_tag())
+    tag.append(child)
+    tag.append(
+        HtmlElement('foo')
+    )
 
     print('__components__\n', tag.as_tag())
 

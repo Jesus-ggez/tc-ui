@@ -26,7 +26,7 @@ impl StyleComponent {
             return tag.__str__();
         }
         tag_content[0] = format!("{} {}", class_name, tag_content[0]);
-        tag.components.extend(tag_content);
+        tag.content.extend(tag_content);
 
         Ok(tag.decompose().join("\n"))
     }

@@ -1,5 +1,4 @@
 use pyo3::prelude::*;
-use pyo3::types::PyObject;
 
 use crate::dom_components::HtmlElement;
 
@@ -10,30 +9,21 @@ pub struct Button {
     text: String,
 
     #[pyo3(get, set)]
-    on_click: Option<PyObject>
+    on_click: Option<PyObject>,
 }
 
 #[pymethods]
 impl Button {
     #[new]
-    #[pyo3(signature=(value = "".to_string(), on_click = None))]
+    #[pyo3(signature=(text = "".to_string(), on_click = None))]
     fn new(text: String, on_click: Option<PyObject>) -> (Self, HtmlElement) {
         let py_click = Some(on_click).unwrap_or_else(|| None);
-
         (
             Button {
                 on_click: py_click,
                 text: text,
             },
-            HtmlElement::new(Some("button".to_string())),
-        )
-    }
-    fn __py_event__(slf: PyRefMut<'_, Self>) {
-        let supr = slf.as_super();
-
-        supr.tc_prop(
-            name=,
-            value=,
+            HtmlElement::new("button".to_string(), None),
         )
     }
     fn __str__(slf: PyRef<'_, Self>) -> PyResult<String> {
@@ -41,4 +31,3 @@ impl Button {
         supr.__str__()
     }
 }
-

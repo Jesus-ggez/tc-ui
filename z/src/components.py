@@ -88,12 +88,15 @@ class Index(HtmlElement):
 
     def __alL_styles(self) -> None:
         styles: list = [
-            YellowBoxRsStyle().as_tag('.yellow-box'),
-            GreenBoxPureCls().as_tag('.green-box'),
-            BlueBoxAddDict().as_tag('.blue-box'),
-            CyanBoxPyChain().as_tag('.cyan-box'),
-            RedBoxFromDict().as_tag('.red-box'),
+            YellowBoxRsStyle().as_class('.yellow-box'),
+            GreenBoxPureCls().as_class('.green-box'),
+            BlueBoxAddDict().as_class('.blue-box'),
+            CyanBoxPyChain().as_class('.cyan-box'),
+            RedBoxFromDict().as_class('.red-box'),
         ]
+        style_tag: HtmlElement = HtmlElement('style')
         for item in styles:
-            self.append(item)
+            style_tag.append(item)
 
+
+        self.append(style_tag.as_tag())

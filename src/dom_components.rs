@@ -2,16 +2,16 @@ use pyo3::prelude::*;
 use std::collections::HashMap;
 
 //<·
+///stub_gen only read
+/// <· type ·> == -> type
+/// #.? -> ignore
+
 #[pyclass(subclass)]
 pub struct StyleComponent {
     #[pyo3(get, set)]
     pub properties: HashMap<String, String>,
 }
-/// stub_gen only read
-/// <· type ·> == -> type
-/// #.? -> ignore
 
-//#[pyclass(extends=PyObject, subclass)]
 #[pyclass(subclass)]
 #[derive(Debug, Clone)]
 pub struct HtmlElement {
@@ -25,5 +25,9 @@ pub struct HtmlElement {
     pub tag: String,
 
     #[pyo3(get, set)]
-    pub composition: Vec<HtmlElement>,
+    pub widgets: Vec<HtmlElement>,
+
+    #[pyo3(get, set)]
+    pub content: Vec<String>,
 }
+

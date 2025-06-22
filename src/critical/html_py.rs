@@ -15,7 +15,8 @@ impl HtmlElement {
             tag: tag,
             attrs: HashMap::new(),
             components: Vec::new(),
-            composition: Vec::new(),
+            widgets: Vec::new(),
+            content: Vec::new(),
         }
     }
 

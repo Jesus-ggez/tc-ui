@@ -21,5 +21,6 @@ fn tc_ui(m: &Bound<'_, PyModule>) -> PyResult<()> {
     let _ = m.add_class::<StyleComponent>()?;
     let _ = m.add_class::<HtmlElement>()?;
     let _ = m.add_class::<crate::text::Text>()?;
+    let _ = m.add_class::<crate::commentary::Commentary>()?;
     Ok(())
 }
