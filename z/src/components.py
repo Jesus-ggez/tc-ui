@@ -1,60 +1,99 @@
-from tc_ui import HtmlElement, StyleComponent
+from tc_ui import HtmlElement
 
 
 #.?
-from .texts import Title, Paragraph
+from .containers import Container
+from .styles import (
+    YellowBoxRsStyle,
+    GreenBoxPureCls,
+    CyanBoxPyChain,
+    BlueBoxAddDict,
+    RedBoxFromDict,
+)
+from .texts import (
+    SimpleWithExternParams,
+    SimpleOnlyValueInit,
+    SimpleOnlyTagInit,
+    SimpleFromInit,
+    SimpleAdd,
+)
+from .texts import (
+    MidInherit,
+)
 
 
 #<·
 class Index(HtmlElement):
     def __init__(self) -> None:
-        super().__init__()
-        self.tag = 'html'
-
-        self.components = [
-            self.head().formated(),
-            self.body().formated(),
-        ]
-
-    def __red_box(self) ->  StyleComponent:
-        return(
-            StyleComponent()
-            .padding('10px')
-            .background_color('#dc143c')
-            .margin('1px')
+        super().__init__(
+            tag='html'
         )
 
-
-    def head(self) -> HtmlElement:
-        head: HtmlElement = HtmlElement(tag='head')
-        head.components = self.__headers()
-
-        return head
+        self.build()
 
 
-    def body(self) -> HtmlElement:
-        body: HtmlElement = HtmlElement(tag='body')
-        body.components = self.__controls()
-        body.append(Paragraph().formated())
-        body.append(self.__red_box().as_tag('.red-box'))
+    def build(self) -> None:
+        all_boxes: list[HtmlElement] = (
+            self.__test_box_yellow() +
+            self.__test_box_green() +
+            self.__test_box_blue() +
+            self.__test_box_cyan() +
+            self.__test_box_red()
+        )
 
-        return body
+        self.components = [
+            tag.formated() for tag in all_boxes
+        ]
+        self.__alL_styles()
 
+    def __test_box(self, color: str) -> list:
+        all_tags: list = [
+            SimpleWithExternParams,
+            SimpleOnlyValueInit,
+            SimpleOnlyTagInit,
+            SimpleFromInit,
+            SimpleAdd,
 
-    def __headers(self) -> list:
-        data: list = []
-
-        base_tag: HtmlElement = HtmlElement('meta')
-        for i in range(10):
-            base_tag.components = [f'foo {i}']
-
-            data.append(base_tag.as_tag())
-
+            MidInherit,
+        ]
+        data: list = [ tag( css_class=color ) for tag in all_tags ]
         return data
 
-
-    def __controls(self) -> list:
+    def __test_box_container(self, color: str) -> list:
         return [
-            Title().as_tag()
-            for _ in range(10)
+            Container(
+                items=self.__test_box(color=color)
+            )
         ]
+
+    def __test_box_yellow(self) -> list:
+        return self.__test_box_container( color='yellow-box' )
+
+
+    def __test_box_green(self) -> list:
+        return self.__test_box_container( color='green-box' )
+
+
+    def __test_box_blue(self) -> list:
+        return self.__test_box_container( color='blue-box' )
+
+
+    def __test_box_cyan(self) -> list:
+        return self.__test_box_container( color='cyan-box' )
+
+
+    def __test_box_red(self) -> list:
+        return self.__test_box_container( color='red-box' )
+
+
+    def __alL_styles(self) -> None:
+        styles: list = [
+            YellowBoxRsStyle().as_tag('.yellow-box'),
+            GreenBoxPureCls().as_tag('.green-box'),
+            BlueBoxAddDict().as_tag('.blue-box'),
+            CyanBoxPyChain().as_tag('.cyan-box'),
+            RedBoxFromDict().as_tag('.red-box'),
+        ]
+        for item in styles:
+            self.append(item)
+

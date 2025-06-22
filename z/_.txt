@@ -1,34 +1,81 @@
-<html><head>
-	<meta>foo 0</meta>
-	<meta>foo 1</meta>
-	<meta>foo 2</meta>
-	<meta>foo 3</meta>
-	<meta>foo 4</meta>
-	<meta>foo 5</meta>
-	<meta>foo 6</meta>
-	<meta>foo 7</meta>
-	<meta>foo 8</meta>
-	<meta>foo 9</meta>
-</head><body>
-	<p class="red-box" ></p>
-	<p class="red-box" ></p>
-	<p class="red-box" ></p>
-	<p class="red-box" ></p>
-	<p class="red-box" ></p>
-	<p class="red-box" ></p>
-	<p class="red-box" ></p>
-	<p class="red-box" ></p>
-	<p class="red-box" ></p>
-	<p class="red-box" ></p>
-	<p
-	style="padding: 10px;background-color: cyan;" 
+<html><div
+	style="background-color: #121212;padding: 4px;" 
+	class="foo" 
 >
-</p>
-	<style>
-	.red-box {
+	<h1 class="yellow-box" >Extern params</h1>
+	<h1 class="yellow-box" >Simple explicit value</h1>
+	<h1 class="yellow-box" >Simple explicit tag</h1>
+	<h1 class="yellow-box" >Simple from __init__</h1>
+	<h1 class="yellow-box" >Simple explicit add</h1>
+	<h1 class="yellow-box" >Middle complex from inherit</h1>
+</div><div
+	style="background-color: #121212;padding: 4px;" 
+	class="foo" 
+>
+	<h1 class="green-box" >Extern params</h1>
+	<h1 class="green-box" >Simple explicit value</h1>
+	<h1 class="green-box" >Simple explicit tag</h1>
+	<h1 class="green-box" >Simple from __init__</h1>
+	<h1 class="green-box" >Simple explicit add</h1>
+	<h1 class="green-box" >Middle complex from inherit</h1>
+</div><div
+	style="background-color: #121212;padding: 4px;" 
+	class="foo" 
+>
+	<h1 class="blue-box" >Extern params</h1>
+	<h1 class="blue-box" >Simple explicit value</h1>
+	<h1 class="blue-box" >Simple explicit tag</h1>
+	<h1 class="blue-box" >Simple from __init__</h1>
+	<h1 class="blue-box" >Simple explicit add</h1>
+	<h1 class="blue-box" >Middle complex from inherit</h1>
+</div><div
+	style="padding: 4px;background-color: #121212;" 
+	class="foo" 
+>
+	<h1 class="cyan-box" >Extern params</h1>
+	<h1 class="cyan-box" >Simple explicit value</h1>
+	<h1 class="cyan-box" >Simple explicit tag</h1>
+	<h1 class="cyan-box" >Simple from __init__</h1>
+	<h1 class="cyan-box" >Simple explicit add</h1>
+	<h1 class="cyan-box" >Middle complex from inherit</h1>
+</div><div
+	style="background-color: #121212;padding: 4px;" 
+	class="foo" 
+>
+	<h1 class="red-box" >Extern params</h1>
+	<h1 class="red-box" >Simple explicit value</h1>
+	<h1 class="red-box" >Simple explicit tag</h1>
+	<h1 class="red-box" >Simple from __init__</h1>
+	<h1 class="red-box" >Simple explicit add</h1>
+	<h1 class="red-box" >Middle complex from inherit</h1>
+</div><style>
+	.yellow-box {
 		padding: 10px;
-		background-color: #dc143c;
-		margin: 1px;
+		background-color: #ffde21;
+		border-radius: 4px;
 }
-</style>
-</body></html>
+</style><style>
+	.green-box {
+		padding: 10px;
+		background-color: #2d572c;
+		border-radius: 4px;
+}
+</style><style>
+	.blue-box {
+		padding: 10px;
+		background-color: #efe;
+		border-radius: 4px;
+}
+</style><style>
+	.cyan-box {
+		border-radius: 4px;
+		padding: 10px;
+		background-color: #11dcdc;
+}
+</style><style>
+	.red-box {
+		background-color: #dc143c;
+		border-radius: 4px;
+		padding: 10px;
+}
+</style></html>

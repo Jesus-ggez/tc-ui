@@ -1,8 +1,13 @@
 class Text(HtmlElement):
-    def __init__(self, tag: str | None = ...) -> None: ...
+    def __init__(
+        self,
+        tag: str | None = None,
+        value: str | None = None,
+    ) -> None: ...
+
 
 class StyleComponent:
-    def __init__(self) -> None:
+    def __init__(self, properties: dict | None = None) -> None:
         self.properties: dict
 
 
@@ -10,7 +15,7 @@ class StyleComponent:
 
     def as_tag(self, class_name: str) -> str: ...
 
-    def as_inline(self, use_attr: bool) -> str: ...
+    def as_inline(self, use_attr: bool = False) -> str: ...
 
     def set_property(self) -> 'StyleComponent': ...
 

@@ -1,6 +1,5 @@
 from fastapi.responses import HTMLResponse
 from fastapi import FastAPI
-import sys
 
 #.?
 from src.components import Index

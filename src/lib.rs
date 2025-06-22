@@ -2,6 +2,7 @@ use pyo3::prelude::*;
 
 //~>
 mod dom_components;
+mod critical;
 
 //+?
 mod css;

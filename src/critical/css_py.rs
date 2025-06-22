@@ -13,6 +13,7 @@ impl StyleComponent {
         }
     }
 
+    #[pyo3(signature=(properties = HashMap::new()))]
     fn __init__(&mut self, properties: HashMap<String, String>) {
         self.properties = properties;
     }
