@@ -7,7 +7,7 @@ class Container(HtmlElement):
         super().__init__()
         self.tag = 'div'
 
-        self.widgets= items
+        self.content= items
         self.set_attr_class('foo')
         self.style(
             value=StyleComponent()

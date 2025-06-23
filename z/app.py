@@ -7,7 +7,7 @@ def main() -> None:
     b = a.as_tag()
     print('a.formated() -> ', b)
 
-    with open('sample.txt', 'w') as foo:
+    with open('xample.txt', 'w') as foo:
         foo.write(b.__str__())
 
 

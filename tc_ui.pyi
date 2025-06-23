@@ -823,8 +823,8 @@ class StyleComponent:
 class HtmlElement:
     def __init__(self, tag: str | None = None) -> None:
         self.attrs: dict
-        self.components: list
         self.tag: str
+        self.content: list
 
 
     def formated(self) -> str: ...
@@ -894,8 +894,6 @@ class HtmlElement:
     def charset(self, value: str) -> 'HtmlElement': ...
 
     def name(self, value: str) -> 'HtmlElement': ...
-
-    def content(self, value: str) -> 'HtmlElement': ...
 
     def rel(self, value: str) -> 'HtmlElement': ...
 

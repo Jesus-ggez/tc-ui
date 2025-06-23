@@ -1,38 +1,48 @@
-<html>
-	<div 
-		class="foo"
-		style="padding: 4px; background-color: #121212;"
-	>
-	</div>
-	<div 
-		style="padding: 4px; background-color: #121212;"
-		class="foo"
-	>
-	</div>
-	<div 
-		style="padding: 4px; background-color: #121212;"
-		class="foo"
-	>
-	</div>
-	<div 
-		style="background-color: #121212; padding: 4px;"
-		class="foo"
-	>
-	</div>
+<div>
 	<div 
 		class="foo"
 		style="background-color: #121212; padding: 4px;"
 	>
+		<h1 
+			class="red-box"
+		>
+			Extern params
+		</h1>
+		<h1 
+			class="red-box"
+		>
+			Simple explicit value
+		</h1>
+		<h1 
+			class="red-box"
+		>
+			Simple explicit tag
+		</h1>
+		<h1 
+			class="red-box"
+		>
+			Simple from __init__
+		</h1>
+		<h1 
+			class="red-box"
+		>
+			Simple explicit add
+		</h1>
+		<h1 
+			class="red-box"
+		>
+			Middle complex from inherit
+		</h1>
 	</div>
 	<style>
 		.yellow-box {
 			background-color: #ffde21;
-			border-radius: 4px;
 			padding: 10px;
+			border-radius: 4px;
 		}
 		.green-box {
-			padding: 10px;
 			border-radius: 4px;
+			padding: 10px;
 			background-color: #2d572c;
 		}
 		.blue-box {
@@ -42,8 +52,8 @@
 		}
 		.cyan-box {
 			padding: 10px;
-			border-radius: 4px;
 			background-color: #11dcdc;
+			border-radius: 4px;
 		}
 		.red-box {
 			background-color: #dc143c;
@@ -51,4 +61,4 @@
 			padding: 10px;
 		}
 	</style>
-</html>
+</div>

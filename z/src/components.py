@@ -20,14 +20,13 @@ from .texts import (
 from .texts import (
     MidInherit,
 )
+from .card import Card
 
 
 #<·
 class Index(HtmlElement):
     def __init__(self) -> None:
-        super().__init__(
-            tag='html'
-        )
+        super().__init__()
 
         self.build()
 
@@ -40,10 +39,13 @@ class Index(HtmlElement):
             self.__test_box_cyan() +
             self.__test_box_red()
         )
+        self.append(Card())
 
-        self.components = [
-            tag.as_tag() for tag in all_boxes
-        ]
+        self.extend(
+            [
+                tag for tag in all_boxes
+            ]
+        )
         self.__alL_styles()
 
     def __test_box(self, color: str) -> list:
@@ -96,7 +98,7 @@ class Index(HtmlElement):
         ]
         style_tag: HtmlElement = HtmlElement('style')
         for item in styles:
-            style_tag.add_html(item)
+            style_tag.append_html(item)
 
 
         self.append(style_tag)

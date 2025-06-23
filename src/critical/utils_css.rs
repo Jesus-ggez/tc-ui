@@ -14,6 +14,7 @@ impl StyleComponent {
         }
         css
     }
+
     pub fn __list_tab_properties(&self) -> Vec<String> {
         self
             .__list_properties()

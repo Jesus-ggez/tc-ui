@@ -4,10 +4,9 @@ from tc_ui import Text
 #<·
 class SimpleFromInit(Text):
     def __init__(self, css_class: str)-> None:
-        super().__init__(
-            value='Simple from __init__',
-            tag='h1',
-        )
+        super().__init__()
+        self.value='Simple from __init__'
+        self.tag='h1'
         self.set_attr_class(css_class)
 
 
@@ -22,28 +21,25 @@ class SimpleAdd(Text):
 
 class SimpleOnlyValueInit(Text):
     def __init__(self, css_class: str) -> None:
-        super().__init__(
-            value='Simple explicit value',
-        )
+        super().__init__()
+        self.value='Simple explicit value'
         self.tag = 'h1'
         self.set_attr_class(css_class)
 
 
 class SimpleOnlyTagInit(Text):
     def __init__(self, css_class: str) -> None:
-        super().__init__(
-            tag='h1'
-        )
+        super().__init__()
+        self.tag='h1'
         self.value = 'Simple explicit tag'
         self.set_attr_class(css_class)
 
 
 class SimpleWithExternParams(Text):
     def __init__(self, css_class: str, value: str = 'Extern params') -> None:
-        super().__init__(
-            value=value,
-        )
+        super().__init__()
         self.tag = 'h1'
+        self.value = value
         self.set_attr_class(css_class)
 
 #--#--# multiinherit

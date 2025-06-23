@@ -54,7 +54,8 @@ class RenamedHtmlElemetSubClass(HtmlElement):
 
 class RenamedHtmlElemetSubClassWithParams(HtmlElement):
     def __init__(self, param: str = '', tag: str = 'renamed') -> None:
-        super().__init__(tag=tag)
+        super().__init__()
+        self.tag = tag
 
 
 _renamed_: str = '<renamed></renamed>'
@@ -89,7 +90,8 @@ class NotnamedHtmlElemetSubClass(HtmlElement):
 
 class NotnamedHtmlElemetSubClassWithParams(HtmlElement):
     def __init__(self, param: str = '', tag: str = '') -> None:
-        super().__init__(tag)
+        super().__init__()
+        self.tag = tag
 
 
 _not_named_: str = '<></>'
