@@ -2,13 +2,12 @@ use pyo3::prelude::*;
 
 use crate::critical::hierarchy::Hierarchy;
 use crate::dom_components::{HtmlElement, StyleComponent};
-use crate::utils::formaters;
 
 //<·
 #[pymethods]
 impl StyleComponent {
     fn as_class(&self, class_name: String) -> PyResult<String> {
-        let mut css_content = self.compose();
+        let mut css_content = self.composition();
         if css_content.is_empty() {
             return Ok(format!("{} {{}}", class_name));
         }
@@ -19,7 +18,7 @@ impl StyleComponent {
     }
 
     fn as_tag(&self, class_name: String) -> PyResult<String> {
-        let mut tag_content = self.compose();
+        let mut tag_content = self.composition();
         let mut tag = HtmlElement::new("style".to_string(), None);
 
         if tag_content.is_empty() {
@@ -33,21 +32,11 @@ impl StyleComponent {
 
     #[pyo3(signature=(use_attr=false))]
     fn as_inline(&self, use_attr: bool) -> PyResult<String> {
-        let mut attrs = self.__simple_base_content().join(" ");
+        let attrs = self.__list_properties().join(" ");
         if use_attr {
-            attrs = format!("style=\"{}\"", attrs);
+            return Ok(format!("style=\"{}\"", attrs));
         }
         Ok(attrs)
     }
-
-    pub fn set_property(
-        mut slf: PyRefMut<'_, Self>,
-        name: String,
-        value: String,
-    ) -> PyRefMut<'_, Self> {
-        let _ = slf
-            .properties
-            .insert(name, format!("{}", formaters::repr(&value)));
-        slf
-    }
 }
+

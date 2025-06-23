@@ -1,92 +1,54 @@
-from tc_ui import StyleComponent, HtmlElement, Commentary
+from tc_ui import (
+    StyleComponent,
+    HtmlElement,
+)
+
+
+class TestHtml:
+    def __init__(self) -> None:
+        self.__build()
+
+
+    def __build(self) -> None:
+        self._empty()
+        self._has_content()
+
+
+    def _empty(self) -> None:
+        item: HtmlElement = HtmlElement()
+        print('empty -> ', item)
+
+
+    def _has_content(self) -> None:
+        item: HtmlElement = HtmlElement(
+            tag='content',
+        )
+        print('has content -> ', item)
+
+
+class TestStyle:
+    def __init__(self) -> None:
+        self.__build()
+
+
+    def __build(self) -> None:
+        self._empty()
+        self._has_content()
 
 
 
-def block() -> Commentary:
-    return Commentary('debug!')
-
-def test_HtmlElement() -> None:
-    test_str_element()
-    test_as_tag_element()
-    test_as_tag_with_elements()
-    test_block_commentary()
-
-
-def test_block_commentary() -> None:
-    print(block())
-    print(block().as_tag())
-    print(block().formated())
-
-
-def test_str_element() -> None:
-    print(
-        '__str__\n', test_element()
-    )
-
-def test_as_tag_element() -> None:
-    print(
-        '__tag__\n', test_element().as_tag()
-    )
-
-def test_as_tag_with_elements() -> None:
-    child: HtmlElement = HtmlElement()
-    child.add_html(child.as_tag())
-
-    tag: HtmlElement = test_element()
-    tag.add_html(child.as_tag())
-    tag.append(child)
-    tag.append(
-        HtmlElement('foo')
-    )
-
-    print('__components__\n', tag.as_tag())
-
-def test_element() -> HtmlElement:
-    return (
-        HtmlElement()
-        .set_attr('set', 'attr')
-        .set_class('cls')
-    )
-
-def test_component() -> StyleComponent:
-    return (
-        StyleComponent()
-        .border_radius('4px')
-        .padding('10px')
-        .margin('1px')
-    )
-
-
-def test_as_tag() -> None:
-    tag: str = test_component().as_tag('.test-tag')
-
-    print(tag)
-
-
-def test_as_class() -> None:
-    clss: str = test_component().as_class('.test-cls')
-
-    print(clss)
-
-
-def test_as_inline(b: bool) -> None:
-    inline: str = test_component().as_inline(b)
-    print(inline)
-
-
-def test_StyleComponent() -> None:
-    test_as_tag()
-    test_as_class()
-    test_as_inline(True)
-    test_as_inline(False)
+    def _has_content(self) -> None:
+        item: StyleComponent = StyleComponent(
+            properties={
+                'has': 'content'
+            }
+        )
+        print('has content -> ',item.as_inline())
 
 
 def main() -> None:
-    test_StyleComponent()
-    print(); print( )
-
-    test_HtmlElement()
-
+    TestHtml()
+    TestStyle()
 
 if __name__ == '__main__':
     main()

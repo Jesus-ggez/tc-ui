@@ -7,8 +7,8 @@ class Container(HtmlElement):
         super().__init__()
         self.tag = 'div'
 
-        self.components = [ i.__str__() for i in items ]
-        self.set_class('foo')
+        self.widgets= items
+        self.set_attr_class('foo')
         self.style(
             value=StyleComponent()
                 .background_color('#121212')

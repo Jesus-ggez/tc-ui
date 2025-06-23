@@ -14,9 +14,6 @@ impl HtmlElement {
     fn name(slf: PyRefMut<'_, Self>, value: String) -> PyRefMut<'_, Self> {
         Self::set_attr(slf, "name".to_string(), value)
     }
-    fn content(slf: PyRefMut<'_, Self>, value: String) -> PyRefMut<'_, Self> {
-        Self::set_attr(slf, "content".to_string(), value)
-    }
     fn rel(slf: PyRefMut<'_, Self>, value: String) -> PyRefMut<'_, Self> {
         Self::set_attr(slf, "rel".to_string(), value)
     }

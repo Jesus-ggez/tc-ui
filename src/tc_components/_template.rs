@@ -15,12 +15,15 @@ impl ____ {
     #[new]
     #[pyo3(signature=(value = None))]
     fn new(value: Option<String>) -> (Self, HtmlElement) {
-        let new_value: String = value.unwrap_or_else(|| "".to_string());
+        let new_value = value.unwrap_or("".into());
+
         let slf_content = ____ {
             value: new_value.clone(),
         };
-        let init_tag = "".to_string();
-        let mut supr_content = HtmlElement::new(init_tag, None);
+        let mut supr_content = HtmlElement::new(
+            "".into(),
+            None,
+        );
 
         supr_content.append_html(new_value);
         (slf_content, supr_content)

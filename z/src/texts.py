@@ -8,7 +8,7 @@ class SimpleFromInit(Text):
             value='Simple from __init__',
             tag='h1',
         )
-        self.set_class(css_class)
+        self.set_attr_class(css_class)
 
 
 class SimpleAdd(Text):
@@ -17,7 +17,7 @@ class SimpleAdd(Text):
 
         self.value = 'Simple explicit add'
         self.tag = 'h1'
-        self.set_class(css_class)
+        self.set_attr_class(css_class)
 
 
 class SimpleOnlyValueInit(Text):
@@ -26,7 +26,7 @@ class SimpleOnlyValueInit(Text):
             value='Simple explicit value',
         )
         self.tag = 'h1'
-        self.set_class(css_class)
+        self.set_attr_class(css_class)
 
 
 class SimpleOnlyTagInit(Text):
@@ -35,7 +35,7 @@ class SimpleOnlyTagInit(Text):
             tag='h1'
         )
         self.value = 'Simple explicit tag'
-        self.set_class(css_class)
+        self.set_attr_class(css_class)
 
 
 class SimpleWithExternParams(Text):
@@ -44,7 +44,7 @@ class SimpleWithExternParams(Text):
             value=value,
         )
         self.tag = 'h1'
-        self.set_class(css_class)
+        self.set_attr_class(css_class)
 
 #--#--# multiinherit
 class MidInherit(SimpleFromInit):

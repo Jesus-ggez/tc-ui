@@ -2,17 +2,14 @@ from src.components import Index
 
 
 def main() -> None:
-    try:
-        a = Index()
+    a = Index()
 
-        try:
-            b = a.as_tag()
-            print('a.formated() -> ', b)
+    b = a.as_tag()
+    print('a.formated() -> ', b)
 
-        except Exception as e:
-            ...
-    except Exception as e:
-        ...
+    with open('sample.txt', 'w') as foo:
+        foo.write(b.__str__())
+
 
 
 if __name__ == '__main__':

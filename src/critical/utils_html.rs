@@ -10,13 +10,13 @@ impl HtmlElement {
         }
         attrs
     }
-    pub fn __list_tab_components(&self) -> Vec<String> {
+    pub fn __list_tab_content(&self) -> Vec<String> {
         self.content
             .iter()
             .map(|c| format!("\t{}", c))
             .collect()
     }
-    pub fn __list_trimed_components(&self) -> Vec<String> {
+    pub fn __list_trimed_content(&self) -> Vec<String> {
         self.content.iter().map(|c| c.trim().to_string()).collect()
     }
 }

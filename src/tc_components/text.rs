@@ -13,41 +13,44 @@ pub struct Text {
 #[pymethods]
 impl Text {
     #[new]
-    #[pyo3(signature=(value = None, tag = None, **py_kwargs))]
+    #[pyo3(signature=(value = None, tag = None, **_py_kwargs))]
     fn new(
         value: Option<String>,
         tag: Option<String>,
-        py_kwargs: Option<&Bound<'_, PyDict>>,
+        _py_kwargs: Option<&Bound<'_, PyDict>>,
     ) -> (Self, HtmlElement) {
-        let _ = py_kwargs;
-        let new_value: String = value.unwrap_or_else(|| "".to_string());
-        let new_tag: String = tag.unwrap_or_else(|| "p".to_string());
-
-        let slf_content = Text {
-            value: new_value.clone(),
+        let val = match value {
+            None => "".into(),
+            Some(s) => s,
         };
-        let mut supr_content = HtmlElement::new(new_tag, None);
 
-        supr_content.add_html(new_value);
-        (slf_content, supr_content)
+        let mut tag_element = HtmlElement::new(tag.unwrap_or("p".into()), None);
+        tag_element.content.push(val.clone());
+
+        (Text { value: val }, tag_element)
     }
 
     #[pyo3(signature=(value = None, tag=None))]
     fn __init__(mut slf: PyRefMut<'_, Self>, value: Option<String>, tag: Option<String>) {
-        slf.value = value.unwrap_or_default();
-        slf.as_super().components = vec![slf.value.clone()];
+        if value.is_some() {
+            slf.value = value.unwrap();
+        }
 
-        slf.as_super().tag = tag.filter(|t| !t.is_empty()).unwrap_or_default();
+        if tag.is_some() {
+            slf.as_super().tag = tag.unwrap()
+        }
+
+        slf.as_super().components = vec![slf.value.clone()]
     }
 
     fn __str__(slf: PyRef<'_, Self>) -> PyResult<String> {
-        let supr = slf.as_super();
-        supr.__str__()
+        slf.as_super().__str__()
     }
 
     #[setter]
     fn set_value(mut slf: PyRefMut<'_, Self>, value: String) {
-        slf.value = value.clone();
-        slf.as_super().components = vec![value];
+        slf.value = value;
+        slf.as_super().components = vec![slf.value.clone()];
+        slf.as_super().__update_content();
     }
 }

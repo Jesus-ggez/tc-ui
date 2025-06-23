@@ -1,6 +1,8 @@
 //<·
 pub fn repr(val: &str) -> String {
-    let needs_quotes = val.chars().any(|c| !c.is_ascii_alphanumeric() && c != '_' && c != '#');
+    let needs_quotes = val
+        .chars()
+        .any(|c| !c.is_ascii_alphanumeric() && c != '_' && c != '#' && c != ' ');
 
     if needs_quotes {
         return format!("\"{}\"", val);

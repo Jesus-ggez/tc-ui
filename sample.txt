@@ -1,0 +1,54 @@
+<html>
+	<div 
+		class="foo"
+		style="padding: 4px; background-color: #121212;"
+	>
+	</div>
+	<div 
+		style="padding: 4px; background-color: #121212;"
+		class="foo"
+	>
+	</div>
+	<div 
+		style="padding: 4px; background-color: #121212;"
+		class="foo"
+	>
+	</div>
+	<div 
+		style="background-color: #121212; padding: 4px;"
+		class="foo"
+	>
+	</div>
+	<div 
+		class="foo"
+		style="background-color: #121212; padding: 4px;"
+	>
+	</div>
+	<style>
+		.yellow-box {
+			background-color: #ffde21;
+			border-radius: 4px;
+			padding: 10px;
+		}
+		.green-box {
+			padding: 10px;
+			border-radius: 4px;
+			background-color: #2d572c;
+		}
+		.blue-box {
+			background-color: #efe;
+			border-radius: 4px;
+			padding: 10px;
+		}
+		.cyan-box {
+			padding: 10px;
+			border-radius: 4px;
+			background-color: #11dcdc;
+		}
+		.red-box {
+			background-color: #dc143c;
+			border-radius: 4px;
+			padding: 10px;
+		}
+	</style>
+</html>

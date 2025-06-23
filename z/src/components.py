@@ -42,7 +42,7 @@ class Index(HtmlElement):
         )
 
         self.components = [
-            tag.formated() for tag in all_boxes
+            tag.as_tag() for tag in all_boxes
         ]
         self.__alL_styles()
 
@@ -96,7 +96,7 @@ class Index(HtmlElement):
         ]
         style_tag: HtmlElement = HtmlElement('style')
         for item in styles:
-            style_tag.append(item)
+            style_tag.add_html(item)
 
 
-        self.append(style_tag.as_tag())
+        self.append(style_tag)

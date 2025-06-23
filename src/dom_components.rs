@@ -19,15 +19,20 @@ pub struct HtmlElement {
     pub attrs: HashMap<String, String>,
 
     #[pyo3(get, set)]
-    pub components: Vec<String>,
-
-    #[pyo3(get, set)]
     pub tag: String,
 
-    #[pyo3(get, set)]
+    // cls.append -> cls
     pub widgets: Vec<HtmlElement>,
 
-    #[pyo3(get, set)]
+    // cls.append_html -> str
+    pub html_content: Vec<String>,
+
+    /// getter, setter
+    /// self.content = [] -> []
+    /// # py
+    /// html: HtmlElement = HtmlElement('foo')
+    /// html.content = [...] -> [...]
+    /// print(html.content) -> [...]
     pub content: Vec<String>,
 }
 

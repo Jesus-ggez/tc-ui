@@ -1,21 +1,24 @@
 use pyo3::prelude::*;
 
-use crate::critical::hierarchy::Hierarchy;
 use crate::dom_components::HtmlElement;
 
 //<·
 #[pymethods]
 impl HtmlElement {
-    pub fn formated(&self) -> PyResult<String> {
-        Ok(self.decompose().join("\n"))
+    #[setter]
+    pub fn set_content(&mut self, ctt: Vec<HtmlElement>) {
+        self.widgets = ctt;
+        self.content.clear();
+        self.__update_content();
     }
 
-    pub fn as_tag(&self) -> PyResult<String> {
-        Ok(self.decompose().join("\n"))
+    #[getter]
+    pub fn get_content(&self) -> PyResult<Vec<String>> {
+        Ok(self.content.clone())
     }
 
-    pub fn add_html(&mut self, item: String) {
-        self.components.push(item);
+    pub fn append_html(&mut self, item: String) {
+        self.html_content.push(item);
         self.__update_content();
     }
 
@@ -27,7 +30,7 @@ impl HtmlElement {
     pub fn __update_content(&mut self) {
         let new_content: Vec<String> = vec![]
             .into_iter()
-            .chain(self.components.clone())
+            .chain(self.html_content.clone())
             .chain(
                 self.widgets
                     .iter()

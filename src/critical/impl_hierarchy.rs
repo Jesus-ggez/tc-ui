@@ -5,12 +5,12 @@ use crate::dom_components::{HtmlElement, StyleComponent};
 //<·
 impl Hierarchy for StyleComponent {
     fn decompose(&self) -> Vec<String> {
-        self.__simple_base_content()
+        self.__list_properties()
     }
-    fn compose(&self) -> Vec<String> {
+    fn composition(&self) -> Vec<String> {
         vec!["{".to_string()]
             .into_iter()
-            .chain(self.__indent_content())
+            .chain(self.__list_tab_properties())
             .chain(["}".to_string()])
             .collect()
     }
@@ -24,7 +24,7 @@ impl Hierarchy for HtmlElement {
             .map(|c| format!("\t{}", c))
             .collect();
 
-        let tab_components: Vec<String> = self.__list_tab_components()
+        let tab_components: Vec<String> = self.__list_tab_content()
             .iter()
             .map(|c| replace(c, "\n", "\n\t", None))
             .collect();
@@ -48,7 +48,7 @@ impl Hierarchy for HtmlElement {
             .collect()
     }
 
-    fn compose(&self) -> Vec<String> {
+    fn composition(&self) -> Vec<String> {
         self.decompose()
             .iter()
             .map(|c| format!("\t{}", c))
