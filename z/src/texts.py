@@ -30,7 +30,7 @@ class SimpleOnlyValueInit(Text):
 class SimpleOnlyTagInit(Text):
     def __init__(self, css_class: str) -> None:
         super().__init__()
-        self.tag='h1'
+        self.tag='h2'
         self.value = 'Simple explicit tag'
         self.set_attr_class(css_class)
 

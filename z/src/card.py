@@ -10,12 +10,19 @@ class Card(HtmlElement):
         self.set_attr_class(
             'card'
         )
-        self.append_html(
-            self.__style().as_tag('.card')
+        self.extend_html(
+            [
+                self.__style().as_tag('.card'),
+                StyleComponent()
+                .background_color('gray')
+                .color('cyan')
+                .as_tag('.blue')
+            ]
         )
 
         self.append(
             self.__title()
+            .set_attr_class('blue')
         )
 
 
@@ -23,11 +30,11 @@ class Card(HtmlElement):
         return (
             StyleComponent()
             .background_color('#cd134c')
+            .border_radius('4px')
             .padding('10px')
+            .height('10%')
+            .width('10rem')
             .margin('1px')
-            .border_radius('1px')
-            .width('10vh')
-            .height('10vh')
         )
 
 

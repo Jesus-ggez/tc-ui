@@ -21,8 +21,6 @@ def get_first_alnum_word(s: str) -> str:
     return new_word
 
 
-
-
 class Pyo:
     data: dict = {}
 
@@ -68,14 +66,25 @@ class PyoFile:
     def __create_content(self) -> None:
         is_assign_classname: bool = False
         is_fn: bool = False
+        skip: int = 0
 
         params: list = []
 
         for line in self._pure_content:
+            if line.startswith(
+                ( '#[setter]', '#[getter]' )
+            ):
+                skip += 1
+                continue
+
+            if skip:
+                skip -= 1
+                continue
+
             if not is_assign_classname and line.startswith('impl'):
                 raw: str = line.removeprefix('impl')
 
-                self._cls_name += self.___get_alnum_str(v=raw)
+                self._cls_name += get_first_alnum_word(raw)
                 is_assign_classname = True
                 continue
 
@@ -96,9 +105,6 @@ class PyoFile:
                 params.clear()
 
 
-    def ___get_alnum_str(self, v: str) -> str:
-        return get_first_alnum_word(s=v)
-
     def __format_content(self) -> None:
         for _item in self._params:
             base, raw_content = ''.join(_item).strip().split('(')
@@ -111,7 +117,7 @@ class PyoFile:
 
             fn_name: str = base.split()[-1]
 
-            retrn_type: str = self.___get_alnum_str(end) or 'None'
+            retrn_type: str = get_first_alnum_word(end) or 'None'
 
             if 'Py' in retrn_type:
                 new_content: str = end.replace(' ', '')

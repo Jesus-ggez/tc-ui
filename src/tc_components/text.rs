@@ -14,12 +14,13 @@ pub struct Text {
 #[pymethods]
 impl Text {
     #[new]
-    #[pyo3( signature = (value = None, tag = None, **_py_kwargs))]
+    #[pyo3( signature = (value = None, tag = None, **kwargs))]
     fn new(
         value: Option<String>,
         tag: Option<String>,
-        _py_kwargs: Option<&Bound<'_, PyDict>>,
+        kwargs: Option<&Bound<'_, PyDict>>,
     ) -> (Self, HtmlElement) {
+        let _ = kwargs;
         let t = match tag {
             None => "p".into(),
             Some(v) => v,

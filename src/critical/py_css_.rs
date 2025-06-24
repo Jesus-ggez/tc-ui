@@ -8,22 +8,24 @@ use crate::dom_components::StyleComponent;
 #[pymethods]
 impl StyleComponent {
     #[new]
-    #[pyo3(signature=(properties = None, *, **_py_kwargs))]
+    #[pyo3(signature=(properties = None, *, **kwargs))]
     fn new(
         properties: Option<HashMap<String, String>>,
-        _py_kwargs: Option<&Bound<'_, PyDict>>,
+        kwargs: Option<&Bound<'_, PyDict>>,
     ) -> Self {
+        let _ = kwargs;
         StyleComponent {
             properties: properties.unwrap_or(HashMap::new()),
         }
     }
 
-    #[pyo3(signature=(properties = None, *, **_py_kwargs))]
+    #[pyo3(signature=(properties = None, *, **kwargs))]
     fn __init__(
         &mut self,
         properties: Option<HashMap<String, String>>,
-        _py_kwargs: Option<&Bound<'_, PyDict>>,
+        kwargs: Option<&Bound<'_, PyDict>>,
     ) {
+        let _ = kwargs;
         if properties.is_some() {
             self.properties = properties.unwrap();
         }

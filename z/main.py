@@ -22,7 +22,7 @@ if __name__ == '__main__':
     from uvicorn import run
 
     run(
-        app=app,
         port=8000,
+        app=app,
     )
 
