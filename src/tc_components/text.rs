@@ -42,8 +42,8 @@ impl Text {
         slf.as_super().as_tag()
     }
 
-    #[setter(value)]
-    fn value(mut slf: PyRefMut<'_, Self>, value: String) {
+    #[setter]
+    fn set_value(mut slf: PyRefMut<'_, Self>, value: String) {
         slf.value = value;
         slf.as_super().content = vec![slf.value.clone()];
     }

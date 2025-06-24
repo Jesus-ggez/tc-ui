@@ -13,7 +13,7 @@ class Container(HtmlElement):
             value=StyleComponent()
                 .background_color('#121212')
                 .padding('4px')
-                .as_inline()
+                .as_inline(False)
         )
 
 
