@@ -12,6 +12,15 @@ def main() -> None:
         action=Reader,
     )
 
+    for k, v in Pyo.params.items():
+        vv = set(
+            i.strip()
+            for i in v
+        )
+        print(
+            k, len(vv)
+        )
+
 
 if __name__ == '__main__':
     main()

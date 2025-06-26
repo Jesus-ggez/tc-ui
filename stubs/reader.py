@@ -21,6 +21,8 @@ class Reader:
         self.cls_name: str = ''
         self._filename: str = filename
         self.data: list[str] = []
+        if Pyo.stop:
+            return
 
         self.__build()
 
@@ -30,13 +32,21 @@ class Reader:
 
 
     def __build(self) -> None:
-        self.__read_file()
-        self.create_content()
-        self.format_content()
+        try:
+            self.__read_file()
+            self.create_content()
+            self.format_content()
+
+        except Exception as e:
+            print(e)
+            print(self.cls_name)
+            print(self._filename)
+            Pyo.stop = True
 
 
     def __read_file(self) -> None:
         finding: str = '#[pymethods]'
+
         for line in Reader.read_as_list(self._filename):
             if not line.startswith(finding):
                 continue
@@ -84,6 +94,9 @@ class Reader:
         self.is_in_ctt = True
 
         for line in self._file_data:
+            if 'pyo3' in line:
+                continue
+
             self._create_door(line, '#[setter]')
             self._create_door(line, '#[getter]')
             self.ignore_dunder(line)
@@ -103,9 +116,9 @@ class Reader:
             # 'pub fn/fn', 'fn_name()'
             fn_content: str = line.split('fn')[1]
 
-            fn_name, rest = fn_content.split('(')
+            fn_name, rest = fn_content.split('(', 1)
 
-            fn_params, fn_return = rest.split(')')
+            fn_params, fn_return = rest.split(')', 1)
 
             # function name
             all_data[-1] += fn_name.strip()
@@ -124,4 +137,4 @@ class Reader:
             all_data[-1] += end.replace('self', repr(self.cls_name))
 
         self.data: list[str] = all_data
-        for s in self.data: print(s)
+        #for s in self.data: print(s)

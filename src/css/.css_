@@ -4,6 +4,4 @@ use crate::dom_components::StyleComponent;
 
 //<·
 #[pymethods]
-impl StyleComponent {
-
-}
+impl StyleComponent {  }

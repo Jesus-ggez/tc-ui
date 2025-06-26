@@ -11,9 +11,11 @@ class Node:
     def read_node(action) -> None:
         for f in os.listdir():
             if os.path.isfile(f):
-                if ( value := action(f) ).is_ok() and value.cls_name in Pyo.params:
+                if (
+                    ( value := action(f) ).is_ok()
+                    and value.cls_name in Pyo.params
+                ):
                     Pyo.params[value.cls_name].extend(value.data)
-
                 continue
 
             if os.path.isdir(f):
@@ -21,9 +23,9 @@ class Node:
                 if not Node.is_valid_node():
                     return
 
-
                 Node.read_node(action)
                 continue
+        Node.move_node('..')
 
 
     @staticmethod
