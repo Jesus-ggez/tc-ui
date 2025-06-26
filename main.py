@@ -1,8 +1,16 @@
-from stubs.app import app
+#.?
+from stubs.initializer import init_context
+from stubs.reader import Reader
+from stubs.node import Node
+from stubs.data import Pyo
 
 
+#<·
 def main() -> None:
-    app()
+    init_context()
+    Node.read_node(
+        action=Reader,
+    )
 
 
 if __name__ == '__main__':
