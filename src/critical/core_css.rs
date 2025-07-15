@@ -12,7 +12,7 @@ impl StyleComponent {
         name: String,
         value: String,
     ) -> PyRefMut<'_, Self> {
-        let _ = slf
+        let __ = slf
             .properties
             .insert(name, format!("{}", formaters::repr(&value)));
         slf

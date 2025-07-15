@@ -8,7 +8,7 @@ name = "tc_ui"
 crate-type = ["cdylib"]
 
 [dependencies]
-pyo3 = { version = "0.24.1", features = ["extension-module", "multiple-pymethods"] }
+pyo3 = { version = "^0.24.1", features = ["extension-module", "multiple-pymethods"] }
 
 [package-metadata.maturin]
 include-pyi = true

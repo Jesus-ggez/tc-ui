@@ -26,9 +26,9 @@ impl Text {
             Some(v) => v,
         };
 
-        let mut tag_element = HtmlElement::new(t, None);
+        let mut tag_element: HtmlElement = HtmlElement::new(t, None);
 
-        let val = match value {
+        let val: String = match value {
             None => "".into(),
             Some(s) => {
                 tag_element.content.push(s.clone());

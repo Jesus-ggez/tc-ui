@@ -1,8 +1,8 @@
 #.?
-from stubs.initializer import init_context
-from stubs.reader import Reader
-from stubs.node import Node
-from stubs.data import Pyo
+from _stubs.initializer import init_context
+from _stubs.reader import Reader
+from _stubs.node import Node
+from _stubs.data import Pyo
 
 
 #<·
